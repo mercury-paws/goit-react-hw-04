@@ -22,7 +22,7 @@ export default function SearchBar({ onSubmit }) {
       return notify();
     }
     onSubmit(searchQuery);
-    searchQuery.reset
+    searchQuery.reset;
   };
 
   return (
@@ -30,7 +30,7 @@ export default function SearchBar({ onSubmit }) {
       <div>
         <Toaster />
       </div>
-      ;
+
       <header>
         <form onSubmit={handleSearch}>
           <input

@@ -2,14 +2,14 @@ import axios from "axios";
 
 const API_KEY = "IBl9vq3xGxkJ6VtwLlkDtCBI-G8aE2lghdIxtwr96cY";
 
-axios.defaults.baseURL = "https://api.unsplash.com/search/photos/";
+axios.defaults.baseURL = "https://api.unsplash.com";
 
-export const fetchImages = async () => {
-  const response = await axios.get("", {
+export const fetchImages = async (searchQuery) => {
+  const response = await axios.get("/search/photos/", {
     params: {
-      query: "fox",
+      query: searchQuery,
       //   page: currentPage,
-      per_page: 10,
+      per_page: 2,
       orientation: "landscape",
       client_id: API_KEY,
     },
