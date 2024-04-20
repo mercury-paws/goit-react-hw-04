@@ -9,32 +9,53 @@ import { fetchImages } from "../data-api";
 import { useEffect, useState } from "react";
 
 export default function App() {
-  const [photos, setPhotos] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [photos, setPhotos] = useState([]);
+  const [page, setPage] = useState(1);
+  const [query, setQuery] = useState("");
 
-  const handleSubmit = (value) => {
-    console.log(value);
+  const handleSearch = async (query) => {
+    setQuery(query);
+    console.log(query);
+    setPage(1);
+    setPhotos([]);
   };
 
+  const handleLoadMore = () => {
+    setPage(page + 1);
+  };
   useEffect(() => {
+    if (query === "") {
+      return;
+    }
     async function getPhotos() {
-      setIsLoading(true);
-      const data = await fetchImages("fox");
-      setIsLoading(false);
-      setPhotos(data);
-      console.log(data);
+      try {
+        setIsLoading(true);
+        const data = await fetchImages(query, page);
+        setPhotos((prevPhotos) => {
+          return [...prevPhotos, ...data];
+        });
+        console.log(data);
+      } catch (error) {
+        setError(true);
+      } finally {
+        setIsLoading(false);
+      }
     }
     getPhotos();
-  }, []);
+  }, [page, query]);
 
   return (
     <>
-      <SearchBar onSubmit={handleSubmit} />
-      <ErrorMessage />
-      {isLoading && <Loader />}
-      {photos.length > 0 && <ImageGallery items={photos} />}
+      <SearchBar onSubmit={handleSearch} />
+      {error && <ErrorMessage />}
 
-      <LoadMoreBtn />
+      {photos.length > 0 && <ImageGallery items={photos} />}
+      {isLoading && <Loader />}
+      {photos.length > 0 && !isLoading && (
+        <LoadMoreBtn loadMore={handleLoadMore} />
+      )}
       <ImageModal />
     </>
   );

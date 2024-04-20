@@ -3,7 +3,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 export default function SearchBar({ onSubmit }) {
   const notify = () =>
-    toast.success("Fill in the input search field", {
+    toast.success("please, fill in the input search field", {
       style: {
         border: "1px solid #713200",
         padding: "16px",
@@ -17,7 +17,7 @@ export default function SearchBar({ onSubmit }) {
 
   const handleSearch = (event) => {
     event.preventDefault();
-    const searchQuery = event.target.elements.input.value;
+    const searchQuery = event.target.elements.query.value;
     if (searchQuery.trim() === "") {
       return notify();
     }
@@ -38,7 +38,7 @@ export default function SearchBar({ onSubmit }) {
             autoComplete="off"
             autoFocus
             placeholder="Search images and photos"
-            name="input"
+            name="query"
           />
 
           <button type="submit">Search</button>
