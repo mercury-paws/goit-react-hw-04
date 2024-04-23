@@ -2,6 +2,7 @@ import css from "./ImageModal.module.css";
 import React from "react";
 import ReactDOM from "react-dom";
 import Modal from "react-modal";
+import { useState } from "react";
 
 Modal.setAppElement("#root");
 
@@ -17,6 +18,7 @@ export default function ImageModal({ isOpen, onRequestClose, imageUrl }) {
       <div className={css.imageContainer}>
         <img src={imageUrl} alt="Large Image" />
       </div>
+      <div className={css.navigation}></div>
     </Modal>
   );
 }

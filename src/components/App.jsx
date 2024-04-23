@@ -58,7 +58,7 @@ export default function App() {
   return (
     <>
       <SearchBar onSubmit={handleSearch} />
-      {error && <ErrorMessage />}
+      {error || (photos.length === 0 && <ErrorMessage />)}
 
       {photos.length > 0 && (
         <ImageGallery items={photos} onImageClick={handleImageClick} />
