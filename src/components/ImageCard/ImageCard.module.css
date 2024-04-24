@@ -16,4 +16,6 @@
 img {
   display: flex;
   height: auto;
+
+  cursor: pointer;
 }

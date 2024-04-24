@@ -1,10 +1,14 @@
 import css from "./ImageCard.module.css";
 
-export default function ImageCard({ image }) {
+export default function ImageCard({ image, onImageClick }) {
   return (
     <div className={css.imageCard}>
       <div className={css.imageBlock}>
-        <img src={image.urls.small} alt={image.alt_description} />
+        <img
+          src={image.urls.small}
+          alt={image.alt_description}
+          onClick={() => onImageClick(image.urls.regular)}
+        />
       </div>
       <div>
         <p className={css.description}>Description: {image.description}</p>

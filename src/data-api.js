@@ -16,17 +16,3 @@ export const fetchImages = async (searchQuery, currentPage) => {
   });
   return response.data.results;
 };
-
-// export const fetchImages = async (searchQuery, currentPage) => {
-//     const response = await axios.get("", {
-//       params: {
-//         query: searchQuery,
-//         page: currentPage,
-//         per_page: 10,
-//         orientation: "landscape",
-//         client_id: API_KEY,
-//       },
-//     });
-//     // return response.data
-//     console.log(response.data);
-//   };

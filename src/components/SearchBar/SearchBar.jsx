@@ -1,16 +1,17 @@
 import css from "./SearchBar.module.css";
 import toast, { Toaster } from "react-hot-toast";
+import { ImSearch } from "react-icons/im";
 
 export default function SearchBar({ onSubmit }) {
   const notify = () =>
-    toast.success("please, fill in the input search field", {
+    toast.error("please, fill in the input search field", {
       style: {
-        border: "1px solid #713200",
+        border: "1px solid red",
         padding: "16px",
-        color: "#713200",
+        color: "red",
       },
       iconTheme: {
-        primary: "#713200",
+        primary: "red",
         secondary: "#FFFAEE",
       },
     });
@@ -32,16 +33,25 @@ export default function SearchBar({ onSubmit }) {
       </div>
 
       <header>
-        <form onSubmit={handleSearch}>
+        <form onSubmit={handleSearch} className={css.inputForm}>
           <input
             type="text"
             autoComplete="off"
             autoFocus
             placeholder="Search images and photos"
             name="query"
+            className={css.inputField}
           />
-
-          <button type="submit">Search</button>
+          <button
+            type="submit"
+            className={css.searchIconBtn}
+            onSubmit={handleSearch}
+          >
+            <ImSearch className={css.searchIcon} />
+          </button>
+          <button type="submit" className={css.searchBtn}>
+            Search
+          </button>
         </form>
       </header>
     </>
