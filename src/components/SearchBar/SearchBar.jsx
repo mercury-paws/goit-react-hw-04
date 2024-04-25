@@ -23,7 +23,8 @@ export default function SearchBar({ onSubmit }) {
       return notify();
     }
     onSubmit(searchQuery);
-    searchQuery.reset;
+    // searchQuery.reset;
+    event.target.reset();
   };
 
   return (
